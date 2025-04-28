@@ -2,9 +2,10 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package frc.robot.constants;
 
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.util.Units;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -32,11 +33,13 @@ public final class Constants {
         public static final Translation2d BACK_RIGHT_LOCATION = new Translation2d(-0.381, -0.381);
 
         // Swerve drive kinematics constants
-        public static final double WHEEL_DIAMETER_METERS = 0.1016;
+        public static final double WHEEL_DIAMETER_METERS = 0.1016; // TODO
         public static final double DRIVE_GEAR_RATIO = 6.75;
-        public static final double STEER_GEAR_RATIO = 12.8;
-        public static final double MAX_SPEED_METERS_PER_SECOND = 4.5;
-        public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = Math.PI;
+        public static final double STEER_GEAR_RATIO = 21.429;
+        public static final double MAX_SPEED = Units.feetToMeters(14.5);;
+        public static final double MAX_ANGULAR_SPEED = Math.PI;
+
+        // Misc constants
+        public static final boolean fieldOrientated = true;
     }
-    public static final int XBOX_CONTROLLER_PORT = 0;
 }

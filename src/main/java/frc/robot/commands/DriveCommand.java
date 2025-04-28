@@ -1,14 +1,25 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
+import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
+import com.ctre.phoenix6.swerve.SwerveModule.SteerRequestType;
+import com.ctre.phoenix6.swerve.SwerveRequest;
+
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.constants.Constants;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class DriveCommand extends Command {
     private final SwerveSubsystem swerve;
     private final XboxController controller;
+    public final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric() // Create a new request
+            .withDeadband(Constants.Swerve.MAX_SPEED * 0.1).withRotationalDeadband(Constants.Swerve.MAX_ANGULAR_SPEED * 0.1) // Add a 10% deadband
+            .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
+            .withSteerRequestType(SteerRequestType.MotionMagicExpo);
+
 
     public DriveCommand(SwerveSubsystem swerve, XboxController controller) {
+        // Constructor for the command
         this.swerve = swerve;
         this.controller = controller;
         addRequirements(swerve);
@@ -16,18 +27,27 @@ public class DriveCommand extends Command {
 
     @Override
     public void execute() {
+        // Read values from controller
         double xSpeed = -controller.getLeftY(); // Forward/back
         double ySpeed = -controller.getLeftX(); // Left/right
         double rot = -controller.getRightX();   // Rotation
-        // Scale speeds to max
-        xSpeed *= frc.robot.Constants.Swerve.MAX_SPEED_METERS_PER_SECOND;
-        ySpeed *= frc.robot.Constants.Swerve.MAX_SPEED_METERS_PER_SECOND;
-        rot *= frc.robot.Constants.Swerve.MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
-        swerve.drive(xSpeed, ySpeed, rot, true); // Field-oriented
+
+        // Scale read values to max
+        xSpeed *= frc.robot.constants.Constants.Swerve.MAX_SPEED;
+        ySpeed *= frc.robot.constants.Constants.Swerve.MAX_SPEED;
+        rot *= frc.robot.constants.Constants.Swerve.MAX_ANGULAR_SPEED;
+
+        // Drive
+        swerve.getDrivetrain().setControl(
+            drive.withVelocityX(xSpeed)
+                .withVelocityY(ySpeed)
+                .withRotationalRate(rot)
+        );
     }
 
     @Override
     public void end(boolean interrupted) {
-        swerve.drive(0, 0, 0, true);
+        // Stop robot when the command ends
+        
     }
 } 
