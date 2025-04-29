@@ -6,14 +6,14 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.constants.Constants;
+import frc.robot.constants.TunerConstants;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class DriveCommand extends Command {
     private final SwerveSubsystem swerve;
     private final XboxController controller;
     public final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric() // Create a new request
-            .withDeadband(Constants.Swerve.MAX_SPEED * 0.1).withRotationalDeadband(Constants.Swerve.MAX_ANGULAR_SPEED * 0.1) // Add a 10% deadband
+            .withDeadband(TunerConstants.MAX_SPEED * 0.1).withRotationalDeadband(TunerConstants.MAX_ANGULAR_SPEED * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
             .withSteerRequestType(SteerRequestType.MotionMagicExpo);
 
@@ -33,9 +33,9 @@ public class DriveCommand extends Command {
         double rot = -controller.getRightX();   // Rotation
 
         // Scale read values to max
-        xSpeed *= frc.robot.constants.Constants.Swerve.MAX_SPEED;
-        ySpeed *= frc.robot.constants.Constants.Swerve.MAX_SPEED;
-        rot *= frc.robot.constants.Constants.Swerve.MAX_ANGULAR_SPEED;
+        xSpeed *= frc.robot.constants.TunerConstants.MAX_SPEED;
+        ySpeed *= frc.robot.constants.TunerConstants.MAX_SPEED;
+        rot *= frc.robot.constants.TunerConstants.MAX_ANGULAR_SPEED;
 
         // Drive
         swerve.getDrivetrain().setControl(

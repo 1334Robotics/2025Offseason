@@ -4,9 +4,6 @@
 
 package frc.robot.constants;
 
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.util.Units;
-
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -19,27 +16,4 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
-
-  public static final class Swerve {
-        // CAN IDs for drive and steer motors (FL, FR, BL, BR)
-        public static final int[] DRIVE_MOTOR_IDS = {1, 3, 5, 7};
-        public static final int[] STEER_MOTOR_IDS = {2, 4, 6, 8};
-        public static final int PIGEON_ID = 9;
-
-        // Physical locations of the modules relative to robot center (meters)
-        public static final Translation2d FRONT_LEFT_LOCATION = new Translation2d(0.381, 0.381);
-        public static final Translation2d FRONT_RIGHT_LOCATION = new Translation2d(0.381, -0.381);
-        public static final Translation2d BACK_LEFT_LOCATION = new Translation2d(-0.381, 0.381);
-        public static final Translation2d BACK_RIGHT_LOCATION = new Translation2d(-0.381, -0.381);
-
-        // Swerve drive kinematics constants
-        public static final double WHEEL_DIAMETER_METERS = 0.1016; // TODO
-        public static final double DRIVE_GEAR_RATIO = 6.75;
-        public static final double STEER_GEAR_RATIO = 21.429;
-        public static final double MAX_SPEED = Units.feetToMeters(14.5);;
-        public static final double MAX_ANGULAR_SPEED = Math.PI;
-
-        // Misc constants
-        public static final boolean fieldOrientated = true;
-    }
 }

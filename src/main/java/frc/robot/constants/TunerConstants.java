@@ -27,13 +27,13 @@ import edu.wpi.first.units.measure.Voltage;
 
 public final class TunerConstants {
     private static final Slot0Configs steerGains = new Slot0Configs()
-        .withKP(100).withKI(0).withKD(0.5)
-        .withKS(0.1).withKV(1.91).withKA(0)
+        .withKP(100).withKI(0).withKD(0.5) // TODO
+        .withKS(0.1).withKV(1.91).withKA(0) // TODO
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
 
     private static final Slot0Configs driveGains = new Slot0Configs()
-        .withKP(0.1).withKI(0).withKD(0)
-        .withKS(0).withKV(0.124);
+        .withKP(0.1).withKI(0).withKD(0) // TODO
+        .withKS(0).withKV(0.124); // TODO
 
     private static final ClosedLoopOutputType kSteerClosedLoopOutput = ClosedLoopOutputType.Voltage;
     private static final ClosedLoopOutputType kDriveClosedLoopOutput = ClosedLoopOutputType.Voltage;
@@ -42,35 +42,39 @@ public final class TunerConstants {
     private static final SteerMotorArrangement kSteerMotorType = SteerMotorArrangement.TalonFX_Integrated;
     private static final SteerFeedbackType kSteerFeedbackType = SteerFeedbackType.FusedCANcoder;
 
-    private static final Current kSlipCurrent = Units.Amps.of(120.0);
+    private static final Current kSlipCurrent = Units.Amps.of(120.0); // TODO
 
+    // Could remove ?
     private static final TalonFXConfiguration driveInitialConfigs = new TalonFXConfiguration();
     private static final TalonFXConfiguration steerInitialConfigs = new TalonFXConfiguration()
         .withCurrentLimits(
             new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(Units.Amps.of(60))
+                .withStatorCurrentLimit(Units.Amps.of(60)) // TODO
                 .withStatorCurrentLimitEnable(true)
         );
     private static final CANcoderConfiguration encoderInitialConfigs = new CANcoderConfiguration();
-    private static final Pigeon2Configuration pigeonConfigs = null;
+    private static final Pigeon2Configuration pigeonConfigs = null; // TODO
 
-    public static final String kCANBus = "canivore";
-    public static final int kPigeonId = 1;
+    public static final String kCANBus = "canivore"; // TODO
+    public static final int kPigeonId = 1; // TODO
 
-    public static final LinearVelocity kSpeedAt12Volts = Units.MetersPerSecond.of(4.69);
-    private static final double kCoupleRatio = 3.8181818181818183;
-    private static final double kDriveGearRatio = 7.363636363636365;
-    private static final double kSteerGearRatio = 15.42857142857143;
-    private static final Distance kWheelRadius = Units.Inches.of(2.167);
+    public static final LinearVelocity kSpeedAt12Volts = Units.MetersPerSecond.of(4.69); // TODO
+    public static final double MAX_SPEED = edu.wpi.first.math.util.Units.feetToMeters(14.5);;
+    public static final double MAX_ANGULAR_SPEED = Math.PI;
+    private static final double kCoupleRatio = 3.8181818181818183; // TODO
+    private static final double kDriveGearRatio = 6.75;
+    private static final double kSteerGearRatio = 21.429;
+    private static final Distance kWheelRadius = Units.Inches.of(2.167); //TODO
 
-    private static final boolean kInvertLeftSide = false;
-    private static final boolean kInvertRightSide = true;
+    private static final boolean kInvertLeftSide = false; // TODO
+    private static final boolean kInvertRightSide = true; // TODO
 
-    private static final MomentOfInertia kSteerInertia = Units.KilogramSquareMeters.of(0.01);
-    private static final MomentOfInertia kDriveInertia = Units.KilogramSquareMeters.of(0.01);
-    private static final Voltage kSteerFrictionVoltage = Units.Volts.of(0.2);
-    private static final Voltage kDriveFrictionVoltage = Units.Volts.of(0.2);
+    private static final MomentOfInertia kSteerInertia = Units.KilogramSquareMeters.of(0.01); // TODO
+    private static final MomentOfInertia kDriveInertia = Units.KilogramSquareMeters.of(0.01); // TODO
+    private static final Voltage kSteerFrictionVoltage = Units.Volts.of(0.2); // TODO
+    private static final Voltage kDriveFrictionVoltage = Units.Volts.of(0.2); // TODO
 
+    // Construct drivetrain constants
     public static final SwerveDrivetrainConstants DrivetrainConstants = new SwerveDrivetrainConstants()
         .withCANBusName(kCANBus)
         .withPigeon2Id(kPigeonId)
@@ -101,7 +105,7 @@ public final class TunerConstants {
             .withSteerFrictionVoltage(kSteerFrictionVoltage)
             .withDriveFrictionVoltage(kDriveFrictionVoltage);
 
-    // Front left
+    // Front left TODO
     private static final int kFrontLeftDriveMotorId = 3;
     private static final int kFrontLeftSteerMotorId = 2;
     private static final int kFrontLeftEncoderId = 1;
@@ -111,7 +115,7 @@ public final class TunerConstants {
     private static final Distance kFrontLeftXPos = Units.Inches.of(10);
     private static final Distance kFrontLeftYPos = Units.Inches.of(10);
 
-    // Front right
+    // Front right TODO
     private static final int kFrontRightDriveMotorId = 1;
     private static final int kFrontRightSteerMotorId = 0;
     private static final int kFrontRightEncoderId = 0;
@@ -121,7 +125,7 @@ public final class TunerConstants {
     private static final Distance kFrontRightXPos = Units.Inches.of(10);
     private static final Distance kFrontRightYPos = Units.Inches.of(-10);
 
-    // Back left
+    // Back left TODO
     private static final int kBackLeftDriveMotorId = 7;
     private static final int kBackLeftSteerMotorId = 6;
     private static final int kBackLeftEncoderId = 3;
@@ -131,7 +135,7 @@ public final class TunerConstants {
     private static final Distance kBackLeftXPos = Units.Inches.of(-10);
     private static final Distance kBackLeftYPos = Units.Inches.of(10);
 
-    // Back right
+    // Back right TODO
     private static final int kBackRightDriveMotorId = 5;
     private static final int kBackRightSteerMotorId = 4;
     private static final int kBackRightEncoderId = 2;
