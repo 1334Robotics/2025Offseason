@@ -59,7 +59,7 @@ public final class TunerConstants {
     public static final int kPigeonId = 1; // TODO
 
     public static final LinearVelocity kSpeedAt12Volts = Units.MetersPerSecond.of(4.69); // TODO
-    public static final double MAX_SPEED = edu.wpi.first.math.util.Units.feetToMeters(14.5);;
+    public static final double MAX_SPEED = edu.wpi.first.math.util.Units.feetToMeters(14.5);
     public static final double MAX_ANGULAR_SPEED = Math.PI;
     private static final double kCoupleRatio = 3.8181818181818183; // TODO
     private static final double kDriveGearRatio = 6.75;
