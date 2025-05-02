@@ -2,7 +2,7 @@ package frc.robot.commands;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveModule.SteerRequestType;
-import com.ctre.phoenix6.swerve.SwerveRequest;
+import com.ctre.phoenix6.swerve.SwerveRequest.FieldCentric;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -12,8 +12,9 @@ import frc.robot.subsystems.SwerveSubsystem;
 public class DriveCommand extends Command {
     private final SwerveSubsystem swerve;
     private final XboxController controller;
-    public final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric() // Create a new request
-            .withDeadband(TunerConstants.MAX_SPEED * 0.1).withRotationalDeadband(TunerConstants.MAX_ANGULAR_SPEED * 0.1) // Add a 10% deadband
+    public final FieldCentric drive = new FieldCentric() // Create a new request
+            .withDeadband(TunerConstants.MAX_SPEED * TunerConstants.DEADBAND_RANGE)
+            .withRotationalDeadband(TunerConstants.MAX_ANGULAR_SPEED * TunerConstants.ROTATION_DEADBAND_RANGE)
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
             .withSteerRequestType(SteerRequestType.MotionMagicExpo);
 
