@@ -16,10 +16,22 @@ public class SwerveSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-       
+        // Periodic method - can be used for telemetry or other regular updates
+        // The drivetrain handles its own periodic updates internally
     }
-        
+
     public SwerveDrivetrain<TalonFX, TalonFX, CANcoder> getDrivetrain() {
         return drivetrain;
     }
-} 
+
+    /**
+     * Stop the drivetrain by setting all velocities to zero
+     */
+    public void stop() {
+        drivetrain.setControl(
+                new com.ctre.phoenix6.swerve.SwerveRequest.FieldCentric()
+                        .withVelocityX(0)
+                        .withVelocityY(0)
+                        .withRotationalRate(0));
+    }
+}
