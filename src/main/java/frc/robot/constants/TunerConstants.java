@@ -27,7 +27,7 @@ import edu.wpi.first.units.measure.Voltage;
 
 public final class TunerConstants {
     private static final Slot0Configs steerGains = new Slot0Configs()
-        .withKP(100).withKI(0).withKD(0.5) // TODO
+        .withKP(100).withKI(0).withKD(0.5)
         .withKS(0.1).withKV(1.91).withKA(0) // TODO
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
 
@@ -55,8 +55,8 @@ public final class TunerConstants {
     private static final CANcoderConfiguration encoderInitialConfigs = new CANcoderConfiguration();
     private static final Pigeon2Configuration pigeonConfigs = null; // TODO
 
-    public static final String kCANBus = "canivore"; // TODO
-    public static final int kPigeonId = 1; // TODO
+    public static final String kCANBus = "CANivore";
+    public static final int kPigeonId = 2;
 
     public static final LinearVelocity kSpeedAt12Volts = Units.MetersPerSecond.of(4.69); // TODO
     public static final double MAX_SPEED = edu.wpi.first.math.util.Units.feetToMeters(14.5);
@@ -66,7 +66,7 @@ public final class TunerConstants {
     private static final double kCoupleRatio = 3.8181818181818183; // TODO
     private static final double kDriveGearRatio = 6.75;
     private static final double kSteerGearRatio = 21.429;
-    private static final Distance kWheelRadius = Units.Inches.of(2.167); //TODO
+    private static final Distance kWheelRadius = Units.Inches.of(2);
 
     private static final boolean kInvertLeftSide = false; // TODO
     private static final boolean kInvertRightSide = true; // TODO
@@ -107,45 +107,45 @@ public final class TunerConstants {
             .withSteerFrictionVoltage(kSteerFrictionVoltage)
             .withDriveFrictionVoltage(kDriveFrictionVoltage);
 
-    // Front left TODO
-    private static final int kFrontLeftDriveMotorId = 3;
-    private static final int kFrontLeftSteerMotorId = 2;
-    private static final int kFrontLeftEncoderId = 1;
-    private static final Angle kFrontLeftEncoderOffset = Units.Rotations.of(0.15234375);
-    private static final boolean kFrontLeftSteerMotorInverted = true;
+    // Front left
+    private static final int kFrontLeftDriveMotorId = 8;
+    private static final int kFrontLeftSteerMotorId = 7;
+    private static final int kFrontLeftEncoderId = 6;
+    private static final Angle kFrontLeftEncoderOffset = Units.Degrees.of(354.375);
+    private static final boolean kFrontLeftSteerMotorInverted = false;
     private static final boolean kFrontLeftEncoderInverted = false;
-    private static final Distance kFrontLeftXPos = Units.Inches.of(10);
-    private static final Distance kFrontLeftYPos = Units.Inches.of(10);
+    private static final Distance kFrontLeftXPos = Units.Inches.of(14.5);
+    private static final Distance kFrontLeftYPos = Units.Inches.of(14.5);
 
-    // Front right TODO
-    private static final int kFrontRightDriveMotorId = 1;
-    private static final int kFrontRightSteerMotorId = 0;
-    private static final int kFrontRightEncoderId = 0;
-    private static final Angle kFrontRightEncoderOffset = Units.Rotations.of(-0.4873046875);
-    private static final boolean kFrontRightSteerMotorInverted = true;
+    // Front right
+    private static final int kFrontRightDriveMotorId = 14;
+    private static final int kFrontRightSteerMotorId = 13;
+    private static final int kFrontRightEncoderId = 5;
+    private static final Angle kFrontRightEncoderOffset = Units.Degrees.of(96.76758);
+    private static final boolean kFrontRightSteerMotorInverted = false;
     private static final boolean kFrontRightEncoderInverted = false;
-    private static final Distance kFrontRightXPos = Units.Inches.of(10);
-    private static final Distance kFrontRightYPos = Units.Inches.of(-10);
+    private static final Distance kFrontRightXPos = Units.Inches.of(14.5);
+    private static final Distance kFrontRightYPos = Units.Inches.of(-14.5);
 
-    // Back left TODO
-    private static final int kBackLeftDriveMotorId = 7;
-    private static final int kBackLeftSteerMotorId = 6;
+    // Back left
+    private static final int kBackLeftDriveMotorId = 10;
+    private static final int kBackLeftSteerMotorId = 9;
     private static final int kBackLeftEncoderId = 3;
-    private static final Angle kBackLeftEncoderOffset = Units.Rotations.of(-0.219482421875);
-    private static final boolean kBackLeftSteerMotorInverted = true;
+    private static final Angle kBackLeftEncoderOffset = Units.Degrees.of(335.830078);
+    private static final boolean kBackLeftSteerMotorInverted = false;
     private static final boolean kBackLeftEncoderInverted = false;
-    private static final Distance kBackLeftXPos = Units.Inches.of(-10);
-    private static final Distance kBackLeftYPos = Units.Inches.of(10);
+    private static final Distance kBackLeftXPos = Units.Inches.of(-14.5);
+    private static final Distance kBackLeftYPos = Units.Inches.of(14.5);
 
-    // Back right TODO
-    private static final int kBackRightDriveMotorId = 5;
-    private static final int kBackRightSteerMotorId = 4;
-    private static final int kBackRightEncoderId = 2;
-    private static final Angle kBackRightEncoderOffset = Units.Rotations.of(0.17236328125);
-    private static final boolean kBackRightSteerMotorInverted = true;
+    // Back right
+    private static final int kBackRightDriveMotorId = 12;
+    private static final int kBackRightSteerMotorId = 11;
+    private static final int kBackRightEncoderId = 4;
+    private static final Angle kBackRightEncoderOffset = Units.Degrees.of(35.507813);
+    private static final boolean kBackRightSteerMotorInverted = false;
     private static final boolean kBackRightEncoderInverted = false;
-    private static final Distance kBackRightXPos = Units.Inches.of(-10);
-    private static final Distance kBackRightYPos = Units.Inches.of(-10);
+    private static final Distance kBackRightXPos = Units.Inches.of(-14.5);
+    private static final Distance kBackRightYPos = Units.Inches.of(-14.5);
 
     // Create each module
     public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> FrontLeft =
