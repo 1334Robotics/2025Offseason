@@ -27,13 +27,12 @@ import edu.wpi.first.units.measure.Voltage;
 
 public final class TunerConstants {
     private static final Slot0Configs steerGains = new Slot0Configs()
-        .withKP(100).withKI(0).withKD(0.5)
-        .withKS(0.1).withKV(1.91).withKA(0) // TODO
-        .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
-
+            .withKP(20).withKI(0).withKD(0.1) // Reduced from aggressive values
+            .withKS(0.1).withKV(1.91).withKA(0)
+            .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
     private static final Slot0Configs driveGains = new Slot0Configs()
-        .withKP(0.1).withKI(0).withKD(0) // TODO
-        .withKS(0).withKV(0.124); // TODO
+            .withKP(0.05).withKI(0).withKD(0) // Reduced P gain to prevent oscillation
+            .withKS(0).withKV(0.124);
 
     private static final ClosedLoopOutputType kSteerClosedLoopOutput = ClosedLoopOutputType.Voltage;
     private static final ClosedLoopOutputType kDriveClosedLoopOutput = ClosedLoopOutputType.Voltage;
@@ -47,11 +46,10 @@ public final class TunerConstants {
     // Could remove ?
     private static final TalonFXConfiguration driveInitialConfigs = new TalonFXConfiguration();
     private static final TalonFXConfiguration steerInitialConfigs = new TalonFXConfiguration()
-        .withCurrentLimits(
-            new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(Units.Amps.of(60)) // TODO
-                .withStatorCurrentLimitEnable(true)
-        );
+            .withCurrentLimits(
+                    new CurrentLimitsConfigs()
+                            .withStatorCurrentLimit(Units.Amps.of(60)) // TODO
+                            .withStatorCurrentLimitEnable(true));
     private static final CANcoderConfiguration encoderInitialConfigs = new CANcoderConfiguration();
     private static final Pigeon2Configuration pigeonConfigs = null; // TODO
 
@@ -78,13 +76,12 @@ public final class TunerConstants {
 
     // Construct drivetrain constants
     public static final SwerveDrivetrainConstants DrivetrainConstants = new SwerveDrivetrainConstants()
-        .withCANBusName(kCANBus)
-        .withPigeon2Id(kPigeonId)
-        .withPigeon2Configs(pigeonConfigs);
-    
+            .withCANBusName(kCANBus)
+            .withPigeon2Id(kPigeonId)
+            .withPigeon2Configs(pigeonConfigs);
+
     // Construct module factory
-    private static final SwerveModuleConstantsFactory<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> ConstantCreator =
-        new SwerveModuleConstantsFactory<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration>()
+    private static final SwerveModuleConstantsFactory<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> ConstantCreator = new SwerveModuleConstantsFactory<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration>()
             .withDriveMotorGearRatio(kDriveGearRatio)
             .withSteerMotorGearRatio(kSteerGearRatio)
             .withWheelRadius(kWheelRadius)
@@ -148,38 +145,37 @@ public final class TunerConstants {
     private static final Distance kBackRightYPos = Units.Inches.of(-14.5);
 
     // Create each module
-    public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> FrontLeft =
-        ConstantCreator.createModuleConstants(
-            kFrontLeftSteerMotorId, kFrontLeftDriveMotorId, kFrontLeftEncoderId, kFrontLeftEncoderOffset,
-            kFrontLeftXPos, kFrontLeftYPos, kInvertLeftSide, kFrontLeftSteerMotorInverted, kFrontLeftEncoderInverted
-        );
-    public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> FrontRight =
-        ConstantCreator.createModuleConstants(
-            kFrontRightSteerMotorId, kFrontRightDriveMotorId, kFrontRightEncoderId, kFrontRightEncoderOffset,
-            kFrontRightXPos, kFrontRightYPos, kInvertRightSide, kFrontRightSteerMotorInverted, kFrontRightEncoderInverted
-        );
-    public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> BackLeft =
-        ConstantCreator.createModuleConstants(
-            kBackLeftSteerMotorId, kBackLeftDriveMotorId, kBackLeftEncoderId, kBackLeftEncoderOffset,
-            kBackLeftXPos, kBackLeftYPos, kInvertLeftSide, kBackLeftSteerMotorInverted, kBackLeftEncoderInverted
-        );
-    public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> BackRight =
-        ConstantCreator.createModuleConstants(
-            kBackRightSteerMotorId, kBackRightDriveMotorId, kBackRightEncoderId, kBackRightEncoderOffset,
-            kBackRightXPos, kBackRightYPos, kInvertRightSide, kBackRightSteerMotorInverted, kBackRightEncoderInverted
-        );
-    
+    public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> FrontLeft = ConstantCreator
+            .createModuleConstants(
+                    kFrontLeftSteerMotorId, kFrontLeftDriveMotorId, kFrontLeftEncoderId, kFrontLeftEncoderOffset,
+                    kFrontLeftXPos, kFrontLeftYPos, kInvertLeftSide, kFrontLeftSteerMotorInverted,
+                    kFrontLeftEncoderInverted);
+    public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> FrontRight = ConstantCreator
+            .createModuleConstants(
+                    kFrontRightSteerMotorId, kFrontRightDriveMotorId, kFrontRightEncoderId, kFrontRightEncoderOffset,
+                    kFrontRightXPos, kFrontRightYPos, kInvertRightSide, kFrontRightSteerMotorInverted,
+                    kFrontRightEncoderInverted);
+    public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> BackLeft = ConstantCreator
+            .createModuleConstants(
+                    kBackLeftSteerMotorId, kBackLeftDriveMotorId, kBackLeftEncoderId, kBackLeftEncoderOffset,
+                    kBackLeftXPos, kBackLeftYPos, kInvertLeftSide, kBackLeftSteerMotorInverted,
+                    kBackLeftEncoderInverted);
+    public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> BackRight = ConstantCreator
+            .createModuleConstants(
+                    kBackRightSteerMotorId, kBackRightDriveMotorId, kBackRightEncoderId, kBackRightEncoderOffset,
+                    kBackRightXPos, kBackRightYPos, kInvertRightSide, kBackRightSteerMotorInverted,
+                    kBackRightEncoderInverted);
+
     // Helper to create a drivetrain
     public static SwerveDrivetrain<TalonFX, TalonFX, CANcoder> createDrivetrain() {
         return new SwerveDrivetrain<>(
-            TalonFX::new,
-            TalonFX::new,
-            CANcoder::new,
-            DrivetrainConstants,
-            FrontLeft,
-            FrontRight,
-            BackLeft,
-            BackRight
-        );
+                TalonFX::new,
+                TalonFX::new,
+                CANcoder::new,
+                DrivetrainConstants,
+                FrontLeft,
+                FrontRight,
+                BackLeft,
+                BackRight);
     }
-} 
+}
