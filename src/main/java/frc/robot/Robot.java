@@ -39,4 +39,16 @@ public class Robot extends TimedRobot {
             autonomousCommand.cancel();
         }
     }
-} 
+
+    @Override
+    public void teleopExit() {
+        // Stop all motors when teleop ends
+        robotContainer.stopRobot();
+    }
+
+    @Override
+    public void disabledInit() {
+        // Stop all motors when robot is disabled
+        robotContainer.stopRobot();
+    }
+}

@@ -12,7 +12,9 @@ import frc.robot.constants.Constants;
 public class RobotContainer {
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-    private final XboxController driverController = new XboxController(Constants.OperatorConstants.kDriverControllerPort); // TODO Default uses CommandXboxController, could replace with the other constructor
+    private final XboxController driverController = new XboxController(
+            Constants.OperatorConstants.kDriverControllerPort); // TODO Default uses CommandXboxController, could
+                                                                // replace with the other constructor
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new DriveCommand(swerveSubsystem, driverController));
@@ -21,11 +23,16 @@ public class RobotContainer {
 
     private void configureBindings() {
         new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+                .onTrue(new ExampleCommand(m_exampleSubsystem));
     }
 
     public Command getAutonomousCommand() {
         // Return a simple do-nothing command for now
         return null;
     }
-} 
+
+    public void stopRobot() {
+        // Stop the swerve drivetrain
+        swerveSubsystem.stop();
+    }
+}

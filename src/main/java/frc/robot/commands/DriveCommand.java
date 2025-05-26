@@ -18,7 +18,6 @@ public class DriveCommand extends Command {
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
             .withSteerRequestType(SteerRequestType.MotionMagicExpo);
 
-
     public DriveCommand(SwerveSubsystem swerve, XboxController controller) {
         // Constructor for the command
         this.swerve = swerve;
@@ -31,7 +30,12 @@ public class DriveCommand extends Command {
         // Read values from controller
         double xSpeed = -controller.getLeftY(); // Forward/back
         double ySpeed = -controller.getLeftX(); // Left/right
-        double rot = -controller.getRightX();   // Rotation
+        double rot = -controller.getRightX(); // Rotation
+
+        // Apply deadband to prevent drift
+        xSpeed = applyDeadband(xSpeed, TunerConstants.DEADBAND_RANGE);
+        ySpeed = applyDeadband(ySpeed, TunerConstants.DEADBAND_RANGE);
+        rot = applyDeadband(rot, TunerConstants.ROTATION_DEADBAND_RANGE);
 
         // Scale read values to max
         xSpeed *= frc.robot.constants.TunerConstants.MAX_SPEED;
@@ -40,15 +44,27 @@ public class DriveCommand extends Command {
 
         // Drive
         swerve.getDrivetrain().setControl(
-            drive.withVelocityX(xSpeed)
-                .withVelocityY(ySpeed)
-                .withRotationalRate(rot)
-        );
+                drive.withVelocityX(xSpeed)
+                        .withVelocityY(ySpeed)
+                        .withRotationalRate(rot));
+    }
+
+    /**
+     * Apply deadband to controller input
+     */
+    private double applyDeadband(double value, double deadband) {
+        if (Math.abs(value) < deadband) {
+            return 0.0;
+        }
+        return (value - Math.copySign(deadband, value)) / (1.0 - deadband);
     }
 
     @Override
     public void end(boolean interrupted) {
         // Stop robot when the command ends
-        
+        swerve.getDrivetrain().setControl(
+                drive.withVelocityX(0)
+                        .withVelocityY(0)
+                        .withRotationalRate(0));
     }
-} 
+}
