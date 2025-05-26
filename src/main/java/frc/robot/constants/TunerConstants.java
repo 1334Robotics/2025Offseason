@@ -55,8 +55,8 @@ public final class TunerConstants {
     private static final CANcoderConfiguration encoderInitialConfigs = new CANcoderConfiguration();
     private static final Pigeon2Configuration pigeonConfigs = null; // TODO
 
-    public static final String kCANBus = "canivore"; // TODO
-    public static final int kPigeonId = 2; // TODO
+    public static final String kCANBus = "CANivore";
+    public static final int kPigeonId = 2;
 
     public static final LinearVelocity kSpeedAt12Volts = Units.MetersPerSecond.of(4.69); // TODO
     public static final double MAX_SPEED = edu.wpi.first.math.util.Units.feetToMeters(14.5);
@@ -66,7 +66,7 @@ public final class TunerConstants {
     private static final double kCoupleRatio = 3.8181818181818183; // TODO
     private static final double kDriveGearRatio = 6.75;
     private static final double kSteerGearRatio = 21.429;
-    private static final Distance kWheelRadius = Units.Inches.of(2); //TODO
+    private static final Distance kWheelRadius = Units.Inches.of(2);
 
     private static final boolean kInvertLeftSide = false; // TODO
     private static final boolean kInvertRightSide = true; // TODO
@@ -107,7 +107,7 @@ public final class TunerConstants {
             .withSteerFrictionVoltage(kSteerFrictionVoltage)
             .withDriveFrictionVoltage(kDriveFrictionVoltage);
 
-    // Front left TODO
+    // Front left
     private static final int kFrontLeftDriveMotorId = 8;
     private static final int kFrontLeftSteerMotorId = 7;
     private static final int kFrontLeftEncoderId = 6;
@@ -117,7 +117,7 @@ public final class TunerConstants {
     private static final Distance kFrontLeftXPos = Units.Inches.of(14.5);
     private static final Distance kFrontLeftYPos = Units.Inches.of(14.5);
 
-    // Front right TODO
+    // Front right
     private static final int kFrontRightDriveMotorId = 14;
     private static final int kFrontRightSteerMotorId = 13;
     private static final int kFrontRightEncoderId = 5;
@@ -127,7 +127,7 @@ public final class TunerConstants {
     private static final Distance kFrontRightXPos = Units.Inches.of(14.5);
     private static final Distance kFrontRightYPos = Units.Inches.of(-14.5);
 
-    // Back left TODO
+    // Back left
     private static final int kBackLeftDriveMotorId = 10;
     private static final int kBackLeftSteerMotorId = 9;
     private static final int kBackLeftEncoderId = 3;
@@ -137,7 +137,7 @@ public final class TunerConstants {
     private static final Distance kBackLeftXPos = Units.Inches.of(-14.5);
     private static final Distance kBackLeftYPos = Units.Inches.of(14.5);
 
-    // Back right TODO
+    // Back right
     private static final int kBackRightDriveMotorId = 12;
     private static final int kBackRightSteerMotorId = 11;
     private static final int kBackRightEncoderId = 4;
