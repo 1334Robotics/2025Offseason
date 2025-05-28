@@ -5,6 +5,7 @@ import com.ctre.phoenix6.swerve.SwerveModule.SteerRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest.FieldCentric;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.constants.TunerConstants;
 import frc.robot.subsystems.SwerveSubsystem;
@@ -37,6 +38,11 @@ public class DriveCommand extends Command {
         xSpeed *= frc.robot.constants.TunerConstants.MAX_SPEED;
         ySpeed *= frc.robot.constants.TunerConstants.MAX_SPEED;
         rot *= frc.robot.constants.TunerConstants.MAX_ANGULAR_SPEED;
+
+        // Send values to SmartDashboard
+        SmartDashboard.putNumber("xSpeed", xSpeed);
+        SmartDashboard.putNumber("ySpeed", ySpeed);
+        SmartDashboard.putNumber("Rotation", rot);
 
         // Drive
         swerve.getDrivetrain().setControl(
